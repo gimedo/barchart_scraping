@@ -1,0 +1,20 @@
+# Instalar:
+#   sudo cp deploy/barchart-chrome.service /etc/systemd/system/
+#   (edita User= y las rutas /opt/barchart)
+#   sudo systemctl daemon-reload && sudo systemctl enable --now barchart-chrome
+#   comprobar:  curl -s http://127.0.0.1:9222/json/version
+[Unit]
+Description=Chrome para Barchart (CDP en 127.0.0.1:9222 sobre pantalla virtual)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=barchart
+WorkingDirectory=/opt/barchart
+ExecStart=/opt/barchart/deploy/chrome_cdp.sh
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

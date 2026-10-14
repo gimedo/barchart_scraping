@@ -1,0 +1,7 @@
+# crontab -e   (usuario que ejecuta el proyecto)
+# Martes a sabado 03:30 (hora del servidor) -> captura la sesion del dia habil anterior.
+# Revisa la zona horaria del servidor (timedatectl) y ajusta la hora a tu convencion historica.
+30 3 * * 2-6 /opt/barchart/deploy/ejecutar_diario.sh
+
+# Con modo cdp (Chrome como servicio) y actualizacion del historial:
+# 30 3 * * 2-6 BARCHART_MODO=cdp /opt/barchart/deploy/ejecutar_diario.sh --con-historico
